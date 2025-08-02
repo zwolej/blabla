@@ -1,21 +1,19 @@
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-class FibonacciTest {
+public class FibonacciTest {
 
     @Test
-    void testFibonacci() {
-        assertEquals(0, Fibonacci.fibonacci(0));
-        assertEquals(1, Fibonacci.fibonacci(1));
-        assertEquals(1, Fibonacci.fibonacci(2));
-        assertEquals(2, Fibonacci.fibonacci(3));
-        assertEquals(3, Fibonacci.fibonacci(4));
-        assertEquals(5, Fibonacci.fibonacci(5));
-        assertEquals(8, Fibonacci.fibonacci(6));
+    public void testFibonacciWithinLimit() {
+        Fibonacci fib = new Fibonacci();
+        assertEquals(0, fib.calculate(0));
+        assertEquals(1, fib.calculate(1));
+        assertEquals(55, fib.calculate(10));
     }
 
     @Test
-    void testNegative() {
-        assertThrows(IllegalArgumentException.class, () -> Fibonacci.fibonacci(-1));
+    public void testFibonacciExceedingLimit() {
+        Fibonacci fib = new Fibonacci();
+        assertThrows(IllegalArgumentException.class, () -> fib.calculate(101));
     }
 }
