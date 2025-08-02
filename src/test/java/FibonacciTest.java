@@ -14,4 +14,14 @@ public class FibonacciTest {
     public void testFibonacciExceedingLimit() {
         assertThrows(IllegalArgumentException.class, () -> Fibonacci.calculateFibonacci(101));
     }
+
+    @Test
+    public void testNegativeInput() {
+        assertThrows(IllegalArgumentException.class, () -> Fibonacci.calculateFibonacci(-1));
+    }
+
+    @Test
+    public void testLargeInput() {
+        assertEquals(1346269, Fibonacci.calculateFibonacci(25), "Unexpected value for position 25");
+    }
 }
