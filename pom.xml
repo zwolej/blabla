@@ -1,1 +1,29 @@
-PHByb2plY3QgeG1sbnM9Imh0dHA6Ly9tYXZlbi5hcGFjaGUub3JnL1BPT00vNC4wLjAiDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEteG1sbnMiPg0KICA8bW9kZWxWZXJzaW9uPjQuMC4wPC9tb2RlbFZlcnNpb24+DQogIDxncm91cElkPmNvbS5leGFtcGxlPC9ncm91cElkPg0KICA8YXJ0aWZhY3RJZD5ibGFibGE8L2FydGlmYWN0SWQ+DQogIDx2ZXJzaW9uPjEuMC1TUEFDS0VUIDwvdmVyc2lvbj4NCg0KICA8cHJvcGVydGllcz4NCiAgICA8bWF2ZW4uY29tcGlsZXIuc291cmNlPjE3PC9tYXZlbi5jb21waWxlci5zb3VyY2U+DQogICAgPG1hdmVuLmNvbXBpbGVyLnRhcmdldD4xNzwv bWF2ZW4uY29tcGlsZXIudGFyZ2V0Pg0KICAgIDxwcm9qZWN0LmJ1aWxkLnNvdXJjZUVuY29kaW5nPldURkI8L3Byb2plY3QuYnVpbGQuc291cmNlRW5jb2Rpbmc+DQogIDwvcHJvcGVydGllcz4NCg0KICA8ZGVwZW5kZW5jaWVzPg0KICAgIDxkZXBlbmRlbmN5Pg0KICAgICAgPGdyb3VwSWQ+b3JnLmp1bml0Lmp1cGl0ZXI8L2dyb3VwSWQ+DQogICAgICA8YXJ0aWZhY3RJZD5qdW5pdC1qdXBpdGVyLWFwaTwvYXJ0aWZhY3RJZD4NCiAgICAgIDx2ZXJzaW9uPjUuOS4yPC92ZXJzaW9uPg0KICAgICAgPHNjb3BlPnRlc3Q8L3Njb3BlPg0KICAgIDwvZGVwZW5kZW5jeT4NCiAgICA8ZGVwZW5kZW5jeT4NCiAgICAgIDxncm91cElkPm9yZy5qdW5pdC5qdXBpdGVyPC9ncm91cElkPg0KICAgICAgPGFydGlmYWN0SWQ+anVuaXQtdXVwaXRlci1lbmdpbmU8L2FydGlmYWN0SWQ+DQogICAgICA8dmVyc2lvbj41LjkuMjwvdmVyc2lvbj4NCiAgICAgIDxzY29wZT50ZXN0PC9zY29wZT4NCiAgICA8L2RlcGVuZGVuY3k+DQogIDwvZGVwZW5kZW5jaWVzPg0KDQogIDxidWlsZDz4DQogICAgPHBsdWdpbj4NCiAgICAgIDxncm91cElkPm9yZy5hcGFjaGUubWF2ZW4ucGx1Z2luPC9ncm91cElkPg0KICAgICAgPGFydGlmYWN0SWQ+bWF2ZW4tY29tcGlsZXItcGx1Z2luPC9hcnRpZmFjdElkPg0KICAgICAgPHZlcnNpb24+My4xMS4wPC92ZXJzaW9uPg0KICAgICAgPGNvbmZpZ3VyYXRpb24+DQogICAgICAgIDxzb3VyY2U+MTc8L3NvdXJjZT4NCiAgICAgICAgPHRhcmdldD4xNzwv dGFyZ2V0Pg0KICAgIDwvY29uZmlndXJhdGlvbj4NCiAgICA8L3BsdWdpbj4NCiAgICA8cGx1Z2luPg0KICAgICAgPGdyb3VwSWQ+b3JnLmFwYWNoZS5tYXZlbi5zdXJlZmlyZSBwbHVnaW48L2dyb3VwSWQ+DQogICAgICA8YXJ0aWZhY3RJZD5tYXZlbi1zdXJlZmlyZS1wbHVnaW48L2FydGlmYWN0SWQ+DQogICAgICA8dmVyc2lvbj4zLjAuMC1NNzwvdmVyc2lvbj4NCiAgICA8L3BsdWdpbj4NCiAg PC9wbHVnaW5zPg0KICA8L2J1aWxkPg0KPC9wcm9qZWN0Pg0K
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>fibonacci-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M9</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
