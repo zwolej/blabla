@@ -1,4 +1,4 @@
-name: Maven Build
+name: Maven Build and Test
 
 on:
   push:
@@ -10,11 +10,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up JDK 17
@@ -24,7 +23,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B clean install
 
     - name: Run tests
       run: mvn test
