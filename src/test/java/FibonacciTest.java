@@ -5,15 +5,13 @@ public class FibonacciTest {
 
     @Test
     public void testFibonacciWithinLimit() {
-        Fibonacci fib = new Fibonacci();
-        assertEquals(0, fib.calculate(0));
-        assertEquals(1, fib.calculate(1));
-        assertEquals(55, fib.calculate(10));
+        assertEquals(0, Fibonacci.calculateFibonacci(0));
+        assertEquals(1, Fibonacci.calculateFibonacci(1));
+        assertEquals(55, Fibonacci.calculateFibonacci(10));
     }
 
     @Test
     public void testFibonacciExceedingLimit() {
-        Fibonacci fib = new Fibonacci();
-        assertThrows(IllegalArgumentException.class, () -> fib.calculate(101));
+        assertThrows(IllegalArgumentException.class, () -> Fibonacci.calculateFibonacci(101));
     }
 }
