@@ -1,14 +1,15 @@
 public class Fibonacci {
-    public static long fibonacci(int n) {
-        if (n < 0) throw new IllegalArgumentException("Negative index not allowed");
-        if (n == 0) return 0;
-        if (n == 1) return 1;
-        long a = 0, b = 1;
-        for (int i = 2; i <= n; i++) {
-            long c = a + b;
-            a = b;
-            b = c;
+    public static int calculateFibonacci(int position) {
+        if (position <= 1) {
+            return position;
         }
-        return b;
+        int previousValue = 0;
+        int currentValue = 1;
+        for (int index = 2; index <= position; index++) {
+            int nextValue = previousValue + currentValue;
+            previousValue = currentValue;
+            currentValue = nextValue;
+        }
+        return currentValue;
     }
 }
