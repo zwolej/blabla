@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,8 +26,33 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Build with Maven
-      run: mvn -B clean install
+    - name: Build and Test
+      id: build-test
+      run: |
+        echo "Building project..."
+        mvn -B clean install
+        echo "✅ All checks passed!"
 
-    - name: Run tests
-      run: mvn test
+    - name: Comment on PR - Success
+      if: github.event_name == 'pull_request' && success()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '## ✅ Build Successful!\n\nYour changes have passed all checks:\n- ✅ Maven build completed\n- ✅ All tests passed\n\nReady for review! 🚀'
+          })
+
+    - name: Comment on PR - Failed
+      if: github.event_name == 'pull_request' && failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '## ❌ Build Failed\n\nPlease fix the issues and try again.\n\n**What to do:**\n1. Check the build logs above for error details\n2. Fix the issues in your code\n3. Push your changes to trigger a new build\n\n**Need help?** Check the [Actions tab](https://github.com/${{ github.repository }}/actions) for detailed logs.'
+          })
