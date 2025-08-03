@@ -30,29 +30,50 @@ jobs:
       id: build-test
       run: |
         echo "Building project..."
-        mvn -B clean install
+        set -o pipefail
+        mvn -B clean install 2>&1 | tee build.log
         echo "✅ All checks passed!"
-
-    - name: Comment on PR - Success
-      if: github.event_name == 'pull_request' && success()
-      uses: actions/github-script@v7
-      with:
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: '## ✅ Build Successful!\n\nYour changes have passed all checks:\n- ✅ Maven build completed\n- ✅ All tests passed\n\nReady for review! 🚀'
-          })
 
     - name: Comment on PR - Failed
       if: github.event_name == 'pull_request' && failure()
       uses: actions/github-script@v7
       with:
         script: |
+          let errorDetails = '';
+          try {
+            const fs = require('fs');
+            if (fs.existsSync('build.log')) {
+              const logContent = fs.readFileSync('build.log', 'utf8');
+              const lines = logContent.split('\n');
+              
+              // Get last 50 lines
+              const lastLines = lines.slice(-50);
+              
+              // Filter for error lines (case insensitive)
+              const errorLines = lastLines.filter(line => 
+                line.toLowerCase().includes('[error]') ||
+                line.toLowerCase().includes('error') ||
+                line.toLowerCase().includes('exception') ||
+                line.toLowerCase().includes('failed') ||
+                line.toLowerCase().includes('failure')
+              );
+              
+              // Use error lines if found, otherwise use last 50 lines
+              const displayLines = errorLines.length > 0 ? errorLines : lastLines;
+              
+              errorDetails = '\n\n**Build output (last 50 lines):**\n```\n' + displayLines.join('\n') + '\n```';
+              
+              if (errorLines.length > 0) {
+                errorDetails += '\n\n**Error summary:** Found ' + errorLines.length + ' error-related lines in the last 50 lines of output.';
+              }
+            }
+          } catch (e) {
+            errorDetails = '\n\n*Unable to capture build logs automatically. Please check the Actions tab for details.*';
+          }
+          
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '## ❌ Build Failed\n\nPlease fix the issues and try again.\n\n**What to do:**\n1. Check the build logs above for error details\n2. Fix the issues in your code\n3. Push your changes to trigger a new build\n\n**Need help?** Check the [Actions tab](https://github.com/${{ github.repository }}/actions) for detailed logs.'
+            body: '## ❌ Build Failed:\n\n' + errorDetails
           })
