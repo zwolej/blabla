@@ -34,6 +34,18 @@ jobs:
         mvn -B clean install 2>&1 | tee build.log
         echo "✅ All checks passed!"
 
+    - name: Comment on PR - Success
+      if: github.event_name == 'pull_request' && success()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '## ✅ Build Successful!\n\nYour changes have passed all checks:\n- ✅ Maven build completed\n- ✅ All tests passed\n\nReady for review! 🚀'
+          })
+
     - name: Comment on PR - Failed
       if: github.event_name == 'pull_request' && failure()
       uses: actions/github-script@v7
