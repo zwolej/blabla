@@ -1,6 +1,6 @@
 package com.example.service;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.example.service.MyService;
 import org.junit.jupiter.api.Test;
 
 public class MyServiceTest {
@@ -8,7 +8,7 @@ public class MyServiceTest {
     private MyService myService = new MyService();
 
     @Test
-    public void testService() {
-        assertTrue(true, "Test passed");
+    public void testMyServiceFunctionality() {
+        // add test implementation
     }
 }
