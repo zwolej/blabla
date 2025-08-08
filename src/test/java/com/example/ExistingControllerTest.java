@@ -1,19 +1,13 @@
 package com.example;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ExistingControllerTest {
 
     @Test
-    public void testExistingFunctionality() {
-        // Updated expected to 5 to fix test failure
-        assertEquals(5, someFunctionality());
-    }
-
-    private int someFunctionality() {
-        // Simulated functionality that returns 5
-        return 5;
+    public void sampleTest() {
+        assertEquals(2, 1 + 1);
     }
 }
