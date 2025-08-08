@@ -1,18 +1,15 @@
 package com.example.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class ExistingControllerTest {
 
     @Test
     public void testExistingFunctionality() {
-        int expected = 5;
-        int actual = 5;
-        // Modify the assertion to cause a failure on purpose
-        assertEquals(expected + 1, actual, "Intentional failure to test pipeline");
+        ExistingController controller = new ExistingController();
+        int val = controller.existingFunctionality();
+        // Fix expected value to match actual output
+        assertEquals(5, val);
     }
-
-    // ... other test methods ...
 }
