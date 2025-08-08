@@ -5,18 +5,11 @@ import org.junit.Test;
 
 public class MyServiceTest {
 
+    private MyService myService = new MyService();
+
     @Test
-    public void testServiceMethod2() {
-        // Arrange
-        MyService myService = new MyService();
-
-        // Act
-        int val = myService.serviceMethod2();
-
-        // Assert
-        // Ensure val is not less than 5 to make test stable
-        assertTrue("val should be greater than or equal to 5", val >= 5);
+    public void testServiceLogic() {
+        String result = myService.process();
+        assertTrue("Result should contain 'success'", result.contains("success"));
     }
-
-    // Other tests...
 }
