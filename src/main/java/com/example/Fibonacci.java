@@ -1,5 +1,8 @@
 public class Fibonacci {
     public static int calculateFibonacci(int position) {
+        if (position < 0 || position > 100) {
+            throw new IllegalArgumentException("Input must be between 0 and 100 inclusive");
+        }
         if (position <= 1) {
             return position;
         }
